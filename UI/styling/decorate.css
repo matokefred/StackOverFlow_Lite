@@ -1,0 +1,341 @@
+html{
+	width: 100%;
+	height: 100%;
+}
+
+#bodyIndex{
+	font: 2.0 Arial, Helvetica, sans-serif /*This is a shortcut*/
+	padding:0;
+	margin: 0;
+	max-height: auto;
+	background: url('../images/computer-3076956__340.jpg') no-repeat;
+	height: 100%;
+	background-size: cover;
+	background-position: center center;
+	width: 100%;
+	max-width;auto;
+	text-align:center;
+	color;#ffffff;
+	min-height:100%
+	z-index:-1;
+	
+}
+.holder {
+	width: 100%;
+	margin: auto;
+	overflow: hidden;
+	padding: 1px;
+	color: #ffffff;
+	min-height:100%;
+}
+header{
+	height:15%;
+	background-color:transparent;
+	color:#ffffff;
+	padding-top:10px;
+	min-height:50px;/*This is for the sake of responsiveness*/
+	/*border-bottom: #3e3e3e 2px solid;*/	
+	font-family: courier;
+}
+header a{
+	color:#ffffff;
+	text-decoration:none; /*To remove the underlining*/
+	/*text-transform:uppercase;*/
+	font-size:20px;
+}
+header #brand h2{
+	float: center;
+	color:#ffffff;
+}
+header nav {
+	float: center;
+	margin-top: 50px;
+}
+section #welcome h1{
+	font-weight: none;
+	font-size: 70px;
+	font-size: 5.5vw;
+	text-align: center;
+	font-family: courier;
+	margin-top: 50px;
+}
+section #welcome p{
+	font-size: 70px;
+	font-size: 5.5vw;
+	color:#ffffff;
+	font-family: courier;
+}
+.buttons{
+	height:50px;
+	background: #3e3e3e;
+	color:#ffffff;
+	border:0;
+	width:100px;
+	border-radius: 8px;
+	font-size: 20px;
+	margin-top: 10px;
+	font-family: courier;
+}
+
+ footer{
+	position: fixed;
+	bottom: 0;
+	left:0;
+	right:0;
+	text-align: center;
+	height:50px;
+	margin-top: -50px;
+}
+
+
+/*Styling the login page*/
+#bodyLogin {
+	font: 15px/2.0 Arial, Helvetica, sans-serif /*This is a shortcut*/
+	padding:0;
+	margin: 0;
+	max-height: auto;
+	background: url('../images/computer-3076956__340.jpg') no-repeat;
+	height: auto;
+	width: 100%;
+	max-width;auto;
+	background-size: cover;
+	background-position: center center;
+	text-align:center;
+	color;#ffffff;
+	min-height:100%
+
+}
+
+fieldset{
+	display: block;
+	margin: auto;
+	width: 300px;
+	width: 7vw;
+	height: 450px;
+	height: 5vw;
+	align:center;
+	color: #ffffff;
+	font-size: 25px;
+    font-size: 10vw;
+	border-radius: 8px;
+	box-shadow: 0 0 10px #999;
+	font-family:courier;
+	max-height: 100%;
+	max-width: 100;
+}
+
+input[type= text]{
+	width: 30vw;
+	padding: 8px 16px;
+	margin:8px 0;
+	box-sizing: border-box;
+	background-color:transparent;
+	font-size:20px;
+	font-family: courier;
+	border-radius: 8px;
+	color: black;
+}
+input[type= password]{
+	width: 30vw;
+	padding: 8px 16px;
+	margin:8px 0;
+	box-sizing: border-box;
+	background-color:transparent;
+	font-size:20px;
+	font-family: courier;
+	border-radius: 8px;
+	color: black;
+}
+input[type= email]{
+	width: 30vw;
+	padding: 8px 16px;
+	margin:8px 0;
+	box-sizing: border-box;
+	background-color:transparent;
+	font-size:20px;
+	font-family: courier;
+	border-radius: 8px;
+	color: black;
+}
+#signup{
+	position: relative;
+	top:10px;
+}
+
+.formlabels {
+	font-size: 2vw;
+	color: #ffffff;
+	font-family: courier;
+	text-align: center;
+}
+.pageheads{
+	font-size: 3vw;
+	color: #0000cc;
+	font-family: courier;
+	text-align: center;
+	position: relative;
+	top:2vw;
+}
+	
+}
+footer #footerLogin{
+	position: relative;
+	top: 500 px;
+}
+#buttonLogin{
+	height:50px;
+	background: #3e3e3e;
+	color:#ffffff;
+	border:0;
+	width:120px;
+	float: center;
+	border-radius: 8px;
+	font-size: 20px;
+	margin-top: 10px;
+	font-family: courier;
+}
+
+/*Styling the signup page*/
+#bodySign {
+	font: 15px/2.0 Arial, Helvetica, sans-serif /*This is a shortcut*/
+	padding:0;
+	margin: 0;
+	min-height: auto;
+	background: url('../images/computer-2242264__340.jpg') no-repeat 0 -200px;
+	height: 558px;
+	width: 100%;
+	background-size: cover;
+	background-position: center center;
+	text-align:center;
+	color;#ffffff;
+}
+#fieldSign{
+	display: block;
+	margin: auto;
+	width: 400px;
+	height: 530px;
+	align:center;
+	color: #ffffff;
+	font-size: 20px;
+	border-radius: 8px;
+	box-shadow: 0 0 10px #999;
+	font-family:courier;
+}
+#password-field{
+	width: 100%;
+	padding: 6px 12px;
+	margin: 0 2px;
+	box-sizing: border-box;
+	background-color:transparent;
+	font-size:20px;
+	font-family: courier;
+	border-radius: 8px;
+	color: black;
+}
+input[type= email]{
+	width: 100%;
+	padding: 8px 16px;
+	margin:8px 0;
+	box-sizing: border-box;
+	background-color:transparent;
+	font-size:20px;
+	border-radius: 8px;
+	font-family: courier;
+	color: black;
+}
+	/*Styling the dashboard*/
+#bodyDash {
+	font: 15px/2.0 Arial, Helvetica, sans-serif /*This is a shortcut*/
+	padding:0;
+	margin: 0;
+	min-height: auto;
+	background: url('../images/vintage-1170654__340.jpg') no-repeat 0 -200px;
+	height: 560px;
+	width: 100%;
+	background-size: cover;
+	background-position: center center;
+	text-align:center;
+	color;#ffffff;
+}
+
+#fieldDash{
+	display: block;
+	margin-top: 80px;
+	width: 600px;
+	height: 350px;
+	align:center;
+	color: #ffffff;
+	font-size: 20px;
+	border-radius: 8px;
+	box-shadow: 0 0 10px #999;
+	font-family:courier;
+}
+
+#fieldDashQuestions{
+	display: block;
+	margin:auto;
+	width: 250px;
+	height: 300px;
+	float:left;
+	color: #ffffff;
+	font-size: 20px;
+	border-radius: 8px;
+	box-shadow: 0 0 10px #999;
+	font-family:courier;
+}
+
+#fieldDashProfile{
+	display: block;
+	margin: auto;
+	width: 250px;
+	height: 300px;
+	float:right;
+	color: #ffffff;
+	font-size: 20px;
+	border-radius: 8px;
+	box-shadow: 0 0 10px #999;
+	font-family:courier;
+}
+#fieldProfile{
+	display: block;
+	margin: auto;
+	width: 600px;
+	height: 530px;
+	float:center;
+	color: #ffffff;
+	font-size: 20px;
+	border-radius: 8px;
+	box-shadow: 0 0 10px #999;
+	font-family:courier;
+}
+#fieldQuestions{
+	display: block;
+	margin: auto;
+	width: 600px;
+	height: 530px;
+	float:center;
+	color: #ffffff;
+	font-size: 20px;
+	border-radius: 8px;
+	box-shadow: 0 0 10px #999;
+	font-family:courier;
+}
+h2{
+	color: #ffffff;
+	font-size: 2vw;
+	font-family:courier;
+}
+#dashqns{
+	color: #ffffff;
+	font-size: 1.5vw;
+	font-family:courier;
+	float: right;
+	margin-right:10px;
+}
+#dashprofile{
+	color: #ffffff;
+	font-size: 1.5vw;
+	font-family:courier;
+	float: left;
+	padding-left:10px;
+}
