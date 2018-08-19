@@ -89,6 +89,14 @@ def add_answer(uri):
     return jsonify({'You answered this question': qn[0]})
 
 
+@app.route('/questions/<int:uri>', methods=['DELETE'])
+def delete_question(uri):
+    qn = [qn for qn in questions if qn['uri'] == uri]
+    if len(qn) == 0:
+        abort(400)
+    questions.remove(qn[0])
+    return jsonify({'success!': 'The question has been deleted successfully'})
+
 
 if __name__ == '__main__':
     app.run(debug=True)
