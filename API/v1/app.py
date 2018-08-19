@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, make_response
-from flask import abort
+from flask import abort, request
 
 app = Flask(__name__)
 
@@ -48,6 +48,24 @@ def get_question(uri):
     if len(qn) == 0:
         abort(400)
     return jsonify({'Requested Question': qn[0]})
+
+# Create a new question
+
+
+@app.route('/questions', methods=['POST'])
+def add_question():
+    if not request.json or not 'category' in request.json:
+        abort(400)
+    if not request.json or not 'content' in request.json:
+        abort(400)
+    qn = {
+        'uri': questions[-1]['uri'] + 1,
+        'category': request.json['category'],  # Ensuring that the entered question has a category
+        'content': request.json['content'],  # Ensuring that the entered question has content
+        'answer': request.json.get('answer', "")
+    }
+    questions.append(qn)  # Adding the added question to the 'database'
+    return jsonify({'You added this question': qn})
 
 
 if __name__ == '__main__':
