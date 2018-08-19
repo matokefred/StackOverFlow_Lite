@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify, make_response
 
 app = Flask(__name__)
 
@@ -22,5 +22,21 @@ questions = [
         'answer': ''
     }
 ]
+
+#  Customize any errors to come back in json and not in HTML
+
+
+@app.errorhandler(400)
+def bad_request(error):
+    return make_response(jsonify({'error-Definition': 'Bad Request, check if entered parameters are correct'}), 400)
+
+# Get all the questions present
+
+
+@app.route('/questions', methods=['GET'])
+def get_questions():
+    return jsonify({'All questions': questions})
+
+
 if __name__ == '__main__':
     app.run(debug=True)
