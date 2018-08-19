@@ -1,7 +1,7 @@
-#StackOverFlow-Lite- API
+# StackOverFlow-Lite- API
 This is a simple flask API that has provisions for viewing all questions, selecting a particular question, creating a question and also answering an available question.question
 
-#API Breakdown:
+# API Breakdown:
 The api users can:
 
 View all the questions
@@ -13,7 +13,7 @@ Add a question
 Answer a particular question
 
 
-#Guide:
+# Guide:
 Users can either clone from github using git or download a zipped folder:
 
 Downloading
@@ -22,13 +22,13 @@ Download the zipped file of this repository branch. Extract and go to the v1 dir
 Cloning
 Open git and issue this command:
 
-$ git clone https://github.com/matokefred/StackOverflow-Lite.git
+$ git clone https://github.com/matokefred/StackOverflow_Lite.git
 
-Locate the StackOverflow-lite folder in your pc.
+Locate the StackOverflow_lite folder in your pc.
 
-Navigate the App/v1 folder and run app.py in terminal or favourite editor (PyCharm, Atom, Vscode)
+Navigate the API/v1 folder and run app.py in terminal or favourite editor (PyCharm, Atom, Vscode)
 
-#Deployment steps
+# Deployment steps
 To use this api:
 
 Ensure to copy the cURL.exe file in the directory with the app.py file. Otherwise, use Postman to issues requests and obtain responses.
@@ -37,11 +37,11 @@ Ensure to copy the cURL.exe file in the directory with the app.py file. Otherwis
 
 On a new terminal window, access the api:
 
-#To view all the questions: 
+# To view all the questions: 
 
 curl -i http://localhost:5000/questions
 
-#To view a specific question: 
+# To view a specific question: 
 
 curl -i http://localhost:5000/questions/<uri>
 
@@ -57,7 +57,7 @@ curl -i -H "Content-Type: application/json" -X POST -d "{"""answer""": """Modell
 
 curl -i -X DELETE http://localhost:5000/questions/1
 
-#Development tools
+# Development tools
 Flask (server side configuration)
 
 Travis CI (Continuous Integration)
@@ -69,20 +69,20 @@ Pivotal Tracker (Agile Project Management)
 To make any contributions:
 On github, fork the repository. Either clone or download the repository to your local computer,for cloning on git:
 
-$ git clone https://github.com/matokefred/StackOverflow-Lite.git
+$ git clone https://github.com/matokefred/StackOverflow_Lite.git
 
-$ cd StackOverflow-Lite
+$ cd StackOverflow_Lite
 
 $ git fetch --all
 
 $ git pull --all
 
-#Current Travis CI Status because of a failed test
+# Current Travis CI Status because of a failed test
 [![Build Status](https://travis-ci.org/matokefred/StackOverFlow-Lite.svg?branch=api)](https://travis-ci.org/matokefred/StackOverFlow-Lite)
 
-#The relative code coverage
+# The relative code coverage
 [![Coverage Status](https://coveralls.io/repos/github/matokefred/StackOverFlow-Lite/badge.svg?branch=master)](https://coveralls.io/github/matokefred/StackOverFlow-Lite?branch=master)
 
-#Special thanks
+# Special thanks
 
 Andela Bootcamp Preparation - cohort 31
