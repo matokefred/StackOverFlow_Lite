@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, make_response
+from flask import abort
 
 app = Flask(__name__)
 
@@ -36,6 +37,17 @@ def bad_request(error):
 @app.route('/questions', methods=['GET'])
 def get_questions():
     return jsonify({'All questions': questions})
+
+
+# Get a particular question based on their URI
+
+
+@app.route('/questions/<int:uri>', methods=['GET'])
+def get_question(uri):
+    qn = [qn for qn in questions if qn['uri'] == uri]
+    if len(qn) == 0:
+        abort(400)
+    return jsonify({'Requested Question': qn[0]})
 
 
 if __name__ == '__main__':
