@@ -34,7 +34,7 @@ def bad_request(error):
 # Get all the questions present
 
 
-@app.route('/questions', methods=['GET'])
+@app.route('/API/v1/questions', methods=['GET'])
 def get_questions():
     return jsonify({'All questions': questions})
 
@@ -42,7 +42,7 @@ def get_questions():
 # Get a particular question based on their URI
 
 
-@app.route('/questions/<int:uri>', methods=['GET'])
+@app.route('/API/v1/questions/<int:uri>', methods=['GET'])
 def get_question(uri):
     qn = [qn for qn in questions if qn['uri'] == uri]
     if len(qn) == 0:
@@ -52,7 +52,7 @@ def get_question(uri):
 # Create a new question
 
 
-@app.route('/questions', methods=['POST'])
+@app.route('/API/v1/questions', methods=['POST'])
 def add_question():
     if not request.json or not 'category' in request.json:
         abort(400)
@@ -70,7 +70,7 @@ def add_question():
 # Answer a question
 
 
-@app.route('/questions/<int:uri>/answers', methods=['POST'])
+@app.route('/API/v1/questions/<int:uri>/answers', methods=['POST'])
 def add_answer(uri):
     qn = [qn for qn in questions if qn['uri'] == uri]
     if len(qn) == 0:
@@ -89,7 +89,7 @@ def add_answer(uri):
     return jsonify({'You answered this question': qn[0]})
 
 
-@app.route('/questions/<int:uri>', methods=['DELETE'])
+@app.route('/API/v1/questions/<int:uri>', methods=['DELETE'])
 def delete_question(uri):
     qn = [qn for qn in questions if qn['uri'] == uri]
     if len(qn) == 0:
