@@ -1,0 +1,13 @@
+# require: 'coveralls'
+# Coveralls.wear!
+# sudo: false
+language: python
+python :
+        -"3.5"
+        -"3.6"
+# cache: pip
+install :
+        -pip install -r requirements.txt
+script: python testapp.py
+after_success:
+        -"coverall"
