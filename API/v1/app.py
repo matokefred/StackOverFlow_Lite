@@ -1,9 +1,15 @@
-from flask import Flask, jsonify, make_response
-from flask import abort, request
+import os
 
-app = Flask(__name__)
+from app.routes import create_app
 
-questions = [
+
+config_name = os.environ.get('FLASK_ENV')
+app = create_app(config_name)
+
+
+# app = Flask(__name__)
+
+'''questions = [
     {
         'uri': 1,
         'category': 'Programming',
@@ -99,4 +105,6 @@ def delete_question(uri):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True)'''
+if __name__ == '__main__':
+    app.run()
