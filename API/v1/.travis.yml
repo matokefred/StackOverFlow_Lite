@@ -8,6 +8,6 @@ python :
 # cache: pip
 install :
         -pip install -r requirements.txt
-script: python testapp.py
-after_success:
-        -"coverall"
+script: python test_app.py
+#after_success:
+ #        -"coverall"
