@@ -67,6 +67,28 @@ def add_question():
     questions.append(qn)  # Adding the added question to the 'database'
     return jsonify({'You added this question': qn})
 
+# Answer a question
+
+
+@app.route('/questions/<int:uri>/answers', methods=['POST'])
+def add_answer(uri):
+    qn = [qn for qn in questions if qn['uri'] == uri]
+    if len(qn) == 0:
+        abort(400)
+    if not request.json:
+        abort(400)
+    if 'category' in request.json and type(request.json['category']) is not unicode:
+        abort(400)
+    if 'content' in request.json and type(request.json['content']) is not unicode:
+        abort(400)
+    if 'answer' in request.json and type(request.json['answer']) is not unicode:
+        abort(400)
+    qn[0]['category'] = request.json .get('category', qn[0]['category'])
+    qn[0]['content'] = request.json.get('content', qn[0]['content'])
+    qn[0]['answer'] = request.json.get('answer', qn[0]['answer'])
+    return jsonify({'You answered this question': qn[0]})
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
