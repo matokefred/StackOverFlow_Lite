@@ -1,7 +1,7 @@
 import os
 from flask import Flask, jsonify, make_response
 from flask import abort, request
-from app.models import questions
+from apps.models import questions
 from instance.config import APP_CONFIG
 
 
