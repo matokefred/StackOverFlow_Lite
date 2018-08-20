@@ -1,1 +1,1 @@
-web: gunicorn --chdir API/v1 app:app
+web: waitress-serve --port=$PORT app:app
