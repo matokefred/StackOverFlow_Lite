@@ -11,7 +11,7 @@ install:
   
 script: true
   - coverage erase
-  - coverage run -m apiv1.test_app 
+  - coverage run -m apiv1.test_app && coverage html
   
 after_script:
   - coveralls
