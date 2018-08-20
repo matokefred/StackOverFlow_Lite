@@ -1,11 +1,10 @@
 import unittest
-from apps.routes import create_app
+from apps.routes import app
 
 
 class Tdd(unittest.TestCase):
     def setUp(self):
-        self.app = create_app(
-            config_name="testing")
+        self.app = app  # (config_name="testing")
         self.client = self.app.test_client
 
     def test_get_all_questions(self):
