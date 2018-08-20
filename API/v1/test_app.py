@@ -1,5 +1,5 @@
 import unittest
-from app.routes import create_app
+from apps.routes import create_app
 
 
 class Tdd(unittest.TestCase):

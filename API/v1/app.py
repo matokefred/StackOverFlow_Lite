@@ -1,6 +1,6 @@
 import os
 
-from app.routes import create_app
+from apps.routes import create_app
 
 
 config_name = os.environ.get('FLASK_ENV')
