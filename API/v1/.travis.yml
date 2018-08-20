@@ -4,11 +4,13 @@ python:
 
 install:
   - pip install -r requirements.txt
+  - pip install coverage
   
-  
-
-script:  
+script: true
   - python test_app.py
   
-after_success:
+after_script:
   - coveralls
+
+after_success:
+  - codecov
