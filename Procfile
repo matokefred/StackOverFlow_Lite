@@ -1,1 +1,1 @@
-web: waitress-serve --port=$PORT app:app
+web: waitress-serve --port=$PORT --chdir /API/v1 app:app
