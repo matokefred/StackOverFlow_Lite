@@ -35,6 +35,8 @@ Ensure to copy the cURL.exe file in the directory with the app.py file. Otherwis
  
 (python app.py) - in the OS or editor terminal to open the server on which the api will 'sit'
 
+If there is an error, run vars.bat first in the terminal
+
 On a new terminal window, access the api:
 
 # To view all the questions: 
