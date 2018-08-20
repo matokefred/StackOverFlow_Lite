@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath API.app
+web: gunicorn --chdir API v1.app:app
