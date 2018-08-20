@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/matokefred/StackOverFlow_Lite.svg?branch=api)](https://travis-ci.org/matokefred/StackOverFlow_Lite)
+
 # StackOverFlow-Lite- API
 This is a simple flask API that has provisions for viewing all questions, selecting a particular question, creating a question and also answering an available question.question
 
@@ -78,9 +80,6 @@ $ cd StackOverflow_Lite
 $ git fetch --all
 
 $ git pull --all
-
-# Current Travis CI Status because of a failed test
-[![Build Status](https://travis-ci.org/matokefred/StackOverFlow-Lite.svg?branch=api)](https://travis-ci.org/matokefred/StackOverFlow-Lite)
 
 # The relative code coverage
 [![Coverage Status](https://coveralls.io/repos/github/matokefred/StackOverFlow-Lite/badge.svg?branch=master)](https://coveralls.io/github/matokefred/StackOverFlow-Lite?branch=master)
