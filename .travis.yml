@@ -5,10 +5,13 @@ env: FLASK_APP FLASK_ENV=development
 
 install:
   - pip install -r requirements.txt
+  - pip install codecov
+  - pip install pytest
   - pip install coverage
   
 script: true
-  - python API/v1/test_app.py
+  - coverage erase
+  - coverage run -m apiv1.test_app 
   
 after_script:
   - coveralls

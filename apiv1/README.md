@@ -1,7 +1,6 @@
 [![Build Status](https://travis-ci.org/matokefred/StackOverFlow_Lite.svg?branch=api)](https://travis-ci.org/matokefred/StackOverFlow_Lite)
 
-[![Coverage Status](https://coveralls.io/repos/github/matokefred/StackOverFlow-Lite/badge.svg?branch=master)](https://coveralls.io/github/matokefred/StackOverFlow-Lite?branch=master)
-
+[![codecov](https://codecov.io/gh/matokefred/StackOverFlow_Lite/branch/api/graph/badge.svg)](https://codecov.io/gh/matokefred/StackOverFlow_Lite)
 # StackOverFlow-Lite- API
 This is a simple flask API that has provisions for viewing all questions, selecting a particular question, creating a question and also answering an available question.question
 
