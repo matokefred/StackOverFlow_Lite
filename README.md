@@ -44,23 +44,23 @@ On a new terminal window, access the api:
 
 # To view all the questions: 
 
-curl -i http://localhost:5000/API/v1/questions
-
-# To view a specific question: 
-
-curl -i http://localhost:5000/API/v1/questions/<uri>
+curl -i http://localhost:5000/apiv1/questions
 
 # To post a question: 
 
-curl -i -H "Content-Type: application/json" -X POST -d "{"""category""": """sports""", """content""": """Who is the best player in the world"""}" http://localhost:5000/API/v1/questions
+curl -i -H "Content-Type: application/json" -X POST -d "{"""category""": """Music""", """content""": """Who are the beatles?"""}" http://127.0.0.1:5000/apiv1/questions
 
 # To answer a question:
 
-curl -i -H "Content-Type: application/json" -X POST -d "{"""answer""": """Modelling computers to make decisions independently"""}" http://localhost:5000/API/v1/questions/3/answers
+curl -i -H "Content-Type: application/json" -X POST -d "{"""answer""": """The greatest band in history"""}" http://127.0.0.1:5000/apiv1/questions/2/answers
+
+# To view a specific question: 
+
+curl -i http://localhost:5000/apiv1/questions/1
 
 # To delete a question
 
-curl -i -X DELETE http://localhost:5000/API/v1/questions/1
+curl -i -X DELETE http://localhost:5000/apiv1/questions/2
 
 # Development tools
 Flask (server side configuration)
