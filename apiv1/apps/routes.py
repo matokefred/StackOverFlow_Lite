@@ -13,8 +13,7 @@ def create_app(config_name):
                 instance_path=os.environ.get('INSTANCE_PATH'))
     app.config.from_object(APP_CONFIG[config_name])
 
-
-#  Customize any errors to come back in json and not in HTML
+    #  Customize any errors to come back in json and not in HTML
 
     @app.errorhandler(400)
     def _bad_request(error):
@@ -27,7 +26,7 @@ def create_app(config_name):
 
     @app.route('/apiv1/questions', methods=['GET'])
     def _get_questions():
-        return jsonify({'All questions': QUESTIONS})
+        return jsonify({'All questions': QUESTIONS}), 200
 
     # Get a particular question based on their URI
 
@@ -37,7 +36,7 @@ def create_app(config_name):
         # pylint: disable=C1801
         if len(new_qn) == 0:
             abort(400)
-        return jsonify({'Requested Question': new_qn[0]})
+        return jsonify({'Requested Question': new_qn[0]}), 200
 
     # Create a new question
 
@@ -74,7 +73,7 @@ def create_app(config_name):
         new_qn[0]['category'] = request.json .get('category', new_qn[0]['category'])
         new_qn[0]['content'] = request.json.get('content', new_qn[0]['content'])
         new_qn[0]['answer'] = request.json.get('answer', new_qn[0]['answer'])
-        return jsonify({'You answered this question': new_qn[0]})
+        return jsonify({'You answered this question': new_qn[0]}), 202
 
     @app.route('/apiv1/questions/<int:question_id>', methods=['DELETE'])
     def _delete_question(question_id):
@@ -83,5 +82,5 @@ def create_app(config_name):
         if len(new_qn) == 0:
             abort(400)
         QUESTIONS.remove(new_qn[0])
-        return jsonify({'success!': 'The question has been deleted successfully'})
+        return jsonify({'success!': 'The question has been deleted'}), 204
     return app
