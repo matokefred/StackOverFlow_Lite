@@ -1,1 +1,1 @@
-web: gunicorn --chdir apiv1/apps routes:app
+web: gunicorn --chdir app:APP
