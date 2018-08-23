@@ -1,15 +1,10 @@
-from flask import Flask
-from .config import APP_CONFIG
+from flask import Flask, make_response, jsonify
+import psycopg2
+from .config import Development
 
 
-def create_app(define_env):
-    '''
-    the function returns an object
-    '''
-    app = Flask(__name__)
-    app.config.from_object(APP_CONFIG[define_env])
+APP = Flask(__name__)
+APP.config.from_object(Development)
 
-    @app.route('/', methods=['GET'])
-    def index():
-        return 'This is the first endpoint'
-    return app
+CONNECT = psycopg2.connect(db=APP.config['DB_NAME'], user=APP.config['DB_USER'])
+

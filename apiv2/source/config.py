@@ -10,20 +10,20 @@ class Development(object):
     DATABASE_URI = os.getenv('DATABASE_URL')
     JWT_VERIFY_EXPIRATION = True
     JWT_EXPIRATION_DELTA = timedelta(seconds=1200)
-    DATABASE_NAME = 'apidb'
+    DB_NAME = 'apidb'
     DATABASE_HOST = 'localhost'
     DATABASE_PASSWORD = ''
-    DATABASE_USER = 'postgres'
+    DB_USER = 'postgres'
     TRACK_MODIFICATIONS = True
 
 
 class Testing(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'simplicityisthegame'
     JWT_VERIFY_EXPIRATION = True
-    DATABASE_NAME = 'apidb'
+    DB_NAME = 'apidb'
     DATABASE_HOST = 'localhost'
     DATABASE_PASSWORD = ''
-    DATABASE_USER = 'postgres'
+    DB_USER = 'postgres'
     TRACK_MODIFICATIONS = True
     DEBUG = True
     JWT_EXPIRATION_DELTA = timedelta(seconds=1200)
