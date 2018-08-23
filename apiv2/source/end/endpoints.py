@@ -202,3 +202,30 @@ def answer_state(answer_id):
             return jsonify({"403": "Only the owner of the question has that access"})
     else:
         return abort(404)
+
+
+@PRINTS.route('apiv2/update/<int:question_id>/<int:answer_id>', methods=['POST'])
+@jwt_required()
+def improve_answer(question_id, answer_id):
+    '''
+    Define the specific question
+    '''
+    if request.json and request.json['body']:
+        improve = request.json['body']
+        cursor = CONNECT.cursor()
+        sqlcode = 'SELECT * FROM answers WHERE answerId=%s AND questionId=%s;'
+        cursor.execute(sqlcode, (answer_id, question_id))
+        answr = cursor.fetchall()
+        if answr:
+            if answr[0][2] == int(current_identity):
+                sqlcode = 'UPDATE answers SET answer = %s WHERE answerId=%s AND questionId=%s;'
+                cursor.execute(sqlcode, (improve, answer_id, question_id))
+                CONNECT.commit()
+                cursor.close()
+                return jsonify({"200": "You updated the answer"})
+            else:
+                return jsonify({"403": "Only the owner of the answer can update the answer"})
+        else:
+            return abort(404)
+    else:
+        return abort(400)
