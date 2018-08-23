@@ -35,7 +35,7 @@ class Testing(object):
     JWT_AUTH_ENDPOINT = 'login'
 
 
-APP_CONFIG = {
+'''APP_CONFIG = {
     'development': Development,
     'testing': Testing
-}
+}'''

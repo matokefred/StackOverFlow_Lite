@@ -6,7 +6,7 @@ from flask import request, jsonify, make_response, abort
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt import JWT
 
-from .app import CONNECT, APP
+from . import CONNECT, APP
 jwt = JWT()
 
 

@@ -1,7 +1,7 @@
 from flask import Blueprint, abort, request, jsonify
 from flask_jwt import jwt_required, current_identity
 
-from source.app import CONNECT
+from source import CONNECT
 
 PRINTS = Blueprint('source', __name__, url_prefix='/source/end')
 

@@ -1,13 +1,14 @@
 '''
 Define creation and droping of the tables
 '''
-from source.app import CONNECT
+from source import CONNECT
 
 
 class DatabaseTables():
     '''
     Class defines all the database interactions
     '''
+
     def create_tables(self):
         '''
         Create all the relevant tables
