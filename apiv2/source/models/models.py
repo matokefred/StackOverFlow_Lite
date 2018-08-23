@@ -8,12 +8,6 @@ class DatabaseTables():
     '''
     Class defines all the database interactions
     '''
-    def __init__(self):
-        '''
-        create the cursor object used by psycopg2 for database interaction
-        '''
-        self.cursor = CONNECT.cursor()
-
     def create_tables(self):
         '''
         Create all the relevant tables
@@ -46,18 +40,20 @@ class DatabaseTables():
                 'voter INT NOT NULL REFERENCES users(id)' \
                 ');'
 
+        cursor = CONNECT.cursor()
         # Call to execution the tables that have been created
-        self.cursor.execute(users)
-        self.cursor.execute(questions)
-        self.cursor.execute(answers)
-        self.cursor.execute(votes)
+        cursor.execute(users)
+        cursor.execute(questions)
+        cursor.execute(answers)
+        cursor.execute(votes)
         CONNECT.commit()
 
     def drop_tables(self):
         '''
         Clearing the entire database
         '''
-        self.cursor = CONNECT.cursor()
-        self.cursor.execute('DROP TABLE users, questions, answers,votes;')
+        cursor = CONNECT.cursor()
+        cursor.execute('DROP TABLE users, questions, answers,votes;')
         CONNECT.commit()
+        cursor.close()
 
