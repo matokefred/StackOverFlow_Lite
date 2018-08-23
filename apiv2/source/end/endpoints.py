@@ -76,3 +76,21 @@ def post_question():
         return jsonify({"Success!": "Your question has been recorded"})
     abort(400)
 
+
+@PRINTS.route('/apiv2/questions/<int:question_id>', methods=['POST'])
+@jwt_required
+def answer_question(question_id):
+    cursor = CONNECT.cursor()
+    sqlcode = 'SELECT * FROM questions WHERE questionId=%s;'
+    cursor.execute(sqlcode, ([question_id]))
+    qn = cursor.fetchall()
+    if qn:
+        if request.json and request.json['answer']:
+            sqlcode = 'INSERT INTO ANSWERS(userId, answer, questionId) VALUES (%s, %s, %s);'
+            cursor.execute(sqlcode, (int(current_identity), request.json['answer'], question_id))
+            CONNECT.commit()
+            return jsonify({"Congratulations": "Answer received"})
+        return abort(400)
+    return abort(404)
+
+
