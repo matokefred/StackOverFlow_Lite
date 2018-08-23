@@ -58,4 +58,18 @@ def login(username, password):
         return False
 
 
-jwt = PyJWT(APP, login)
+@jwt.handle_displayname
+def displayName(payload):
+    '''
+    The define the name of the current user
+    '''
+    username = payload['name']
+    sqlcode = 'SELECT * FROM users WHERE username=%s;'
+    cursor = CONNECT.cursor()
+    cursor.execute(sqlcode, ([username]))
+    detail = cursor.fetchall()
+    cursor.close()
+    return detail[0][0]
+
+
+jwt = PyJWT(APP, login, displayName)
