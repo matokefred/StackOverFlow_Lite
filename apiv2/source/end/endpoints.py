@@ -7,7 +7,7 @@ PRINTS = Blueprint('source', __name__, url_prefix='/source/end')
 
 
 @PRINTS.route('/apiv2/questions', methods=['GET'])
-@jwt_required
+@jwt_required()
 def get_all_questions():
     cursor = CONNECT.cursor()
     cursor.execute('SELECT * FROM questions;')
@@ -25,7 +25,7 @@ def get_all_questions():
 
 
 @PRINTS.route('/apiv2/questions/<int:question_id>', methods=['GET'])
-@jwt_required
+@jwt_required()
 def get_one_question(question_id):
     output = []
     cursor = CONNECT.cursor()
@@ -66,7 +66,7 @@ def get_one_question(question_id):
 
 
 @PRINTS.route('/apiv2/questions', methods=['POST'])
-@jwt_required
+@jwt_required()
 def post_question():
     if request.json and request.json['body']:
         cursor = CONNECT.cursor()
@@ -80,7 +80,7 @@ def post_question():
 
 
 @PRINTS.route('/apiv2/questions/<int:question_id>', methods=['POST'])
-@jwt_required
+@jwt_required()
 def answer_question(question_id):
     cursor = CONNECT.cursor()
     sqlcode = 'SELECT * FROM questions WHERE questionId=%s;'
@@ -91,6 +91,7 @@ def answer_question(question_id):
             sqlcode = 'INSERT INTO ANSWERS(userId, answer, questionId) VALUES (%s, %s, %s);'
             cursor.execute(sqlcode, (int(current_identity), request.json['answer'], question_id))
             CONNECT.commit()
+            cursor.close
             return jsonify({"Congratulations": "Answer received"})
         else:
             return abort(400)
@@ -99,7 +100,7 @@ def answer_question(question_id):
 
 
 @PRINTS.route('/apiv1/questions/<int: question_id>', methods=['DELETE'])
-@jwt_required
+@jwt_required()
 def delete_question(question_id):
     cursor = CONNECT.cursor()
     sqlcode = 'SELECT * FROM questions WHERE questionId=%s;'
@@ -116,5 +117,88 @@ def delete_question(question_id):
             return jsonify({"200": "The question has been deleted!"})
         else:
             return jsonify({"403":"That action is not allowed"})
+    else:
+        return abort(404)
+
+
+@PRINTS.route('apiv2/upvote/<int: answer_id>', methods=['POST'])
+@jwt_required()
+def upvote_answer(answer_id):
+    cursor = CONNECT.cursor()
+    sqlcode = 'SELECT * FROM answers WHERE answerId=%s;'
+    cursor.execute(sqlcode, ([int(answer_id)]))
+    answr = cursor.fetchall()
+    print(answr)
+    if answr:
+        print('Here')
+        sqlcode = 'SELECT * FROM votes WHERE voteId=%s AND voter=%s;'
+        cursor.execute(sqlcode, (int(answr[0][0]), int(current_identity)))
+        voting = cursor.fetchall()
+        print(voting)
+        if not voting:
+            sqlcode = 'UPDATE answers SET upvotes = upvotes + 1 WHERE answerId=%s;'
+            cursor.execute(sqlcode, ([answer_id]))
+            CONNECT.commit()
+            cursor.close()
+            return jsonify({"OK": "Your vote has been recorded"})
+        else:
+            return jsonify({"403": "You are only allowed to vote once"})
+    else:
+        return abort(404)
+
+
+@PRINTS.route('/api/downvote/<int:answer_id>', methods=['POST'])
+@jwt_required()
+def downvote_answer(answer_id):
+    cursor = CONNECT.cursor()
+    sqlcode = 'SELECT * FROM answers WHERE answerId=%s;'
+    cursor.execute(sqlcode, ([int(answer_id)]))
+    answr = cursor.fetchall()
+    print(answr)
+    if answr:
+        print('here')
+        sqlcode = 'SELECT * FROM votes WHERE voteId=%s AND voter=%s;'
+        cursor.execute(sqlcode, (answer_id, int(current_identity)))
+        voting = cursor.fetchall()
+        print(voting)
+        if not voting:
+            sqlcode = 'UPDATE answers SET downvotes = downvotes + 1 WHERE answerId=%s;'
+            cursor.execute(sqlcode, ([answer_id]))
+            CONNECT.commit()
+            cursor.close()
+            return jsonify({"200": "Your vote has been recorded"})
+        else:
+            return jsonify({"403": "You are only allowed to vote once"})
+    else:
+        return abort(404)
+
+
+@PRINTS.route('apiv1/state/<int:answer_id>', methods=['POST'])
+@jwt_required()
+def answer_state(answer_id):
+    '''
+    Changing the state of answer
+    '''
+    cursor = CONNECT.cursor()
+    sqlcode = 'SELECT * FROM answers WHERE answerId=%s;'
+    cursor.execute(sqlcode, ([int(answer_id)]))
+    answr = cursor.fetchall()
+    if answr:
+        sqlcode = 'SELECT * FROM questions WHERE questionid=%s AND userId=%s;'
+        cursor.execute(sqlcode, (int(answr[0][1]), int(current_identity)))
+        qn = cursor.fetchall()
+        if qn:
+            sqlcode = 'SELECT * FROM answers WHERE questionId=%s AND state=TRUE'
+            cursor.execute(sqlcode, ([int(answr[0][6])]))
+            status = cursor.fetchall()
+            if not status:
+                sqlcode = 'UPDATE answers SET state = TRUE WHERE answerId=%s;'
+                cursor.execute(sqlcode, ([answr[0][0]]))
+                CONNECT.commit()
+                return jsonify({"200": "Status changed to True"})
+            else:
+                return jsonify({"403": "Only one answer can be accepted per question"})
+        else:
+            return jsonify({"403": "Only the owner of the question has that access"})
     else:
         return abort(404)
