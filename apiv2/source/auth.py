@@ -4,10 +4,10 @@ Define all the authentication requirements
 import re
 from flask import request, jsonify, make_response, abort
 from werkzeug.security import generate_password_hash, check_password_hash
-from jwt import PyJWT
+from flask_jwt import JWT
 
 from .app import CONNECT, APP
-jwt = PyJWT()
+jwt = JWT()
 
 
 class Users(object):
@@ -72,4 +72,4 @@ def display(payload):
     return detail[0][0]
 
 
-jwt = PyJWT(APP, login, display)
+jwt = JWT(APP, login, display)
