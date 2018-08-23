@@ -59,7 +59,7 @@ def login(username, password):
 
 
 @jwt.handle_displayname
-def displayName(payload):
+def display(payload):
     '''
     The define the name of the current user
     '''
@@ -72,4 +72,4 @@ def displayName(payload):
     return detail[0][0]
 
 
-jwt = PyJWT(APP, login, displayName)
+jwt = PyJWT(APP, login, display)
