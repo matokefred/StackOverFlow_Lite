@@ -1,5 +1,4 @@
 from flask import Blueprint, abort, request, jsonify
-from datetime import datetime as dt
 from flask_jwt import jwt_required, current_identity
 
 from source.app import CONNECT
@@ -7,7 +6,7 @@ from source.app import CONNECT
 PRINTS = Blueprint('source', __name__, url_prefix='/source/end')
 
 
-@PRINTS.route('/apiv2/questions', methods= ['GET'])
+@PRINTS.route('/apiv2/questions', methods=['GET'])
 @jwt_required
 def get_all_questions():
     cursor = CONNECT.cursor()
@@ -18,8 +17,8 @@ def get_all_questions():
     for qn in question:
         appear = {
             "question_id": qn[0],
-            "body": qn[1],
-            "user_id": qn[2]
+            "User_id": qn[1],
+            "body": qn[2]
         }
         output.append(appear)
         return jsonify({"All Questions": output})
@@ -63,3 +62,17 @@ def get_one_question(question_id):
         cursor.close()
         return jsonify(output)
     return abort(404)
+
+
+@PRINTS.route('/apiv2/questions', methods=['POST'])
+@jwt_required
+def post_question():
+    if request.json and request.json['body']:
+        cursor = CONNECT.cursor()
+        sqlcode = 'INSERT INTO questions(userId, body) VALUES (%s, %s);'
+        cursor.execute(sqlcode, (int(current_identity), request.json['body']))
+        CONNECT.commit()
+        cursor.close()
+        return jsonify({"Success!": "Your question has been recorded"})
+    abort(400)
+
