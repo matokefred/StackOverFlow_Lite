@@ -2,7 +2,6 @@ from flask import Flask, make_response, jsonify
 import psycopg2 as psycopg
 import os
 from .config import Development, Testing
-from source.end import endpoints
 
 APP = Flask(__name__)
 
@@ -12,18 +11,24 @@ elif os.environ['CONTEXT'] == 'DEV':
     APP.config.from_object(Development)
 
 CONNECT = psycopg.connect(
-    dbname=APP.config['DB_NAME'],
+    database=APP.config['DB_NAME'],
     user=APP.config['DB_USER'],
     host=APP.config['DB_HOST'],
-    password=APP.config['DB_PASSWORD']
-)
+    password=APP.config['DB_PASSWORD'])
+
+"""def CONNECT():
+    return psycopg.connect(user="postgress", password="",database="apidatabase", host="localhost")"""
+
+
+from source.end import endpoints
 
 APP.register_blueprint(endpoints.PRINTS)
 
 
 @APP.errorhandler(404)
 def not_found(error):
-    '''Error code 404
+    '''
+    Error code 404
     '''
     return make_response(jsonify({'Error-definition': 'Not found'}), 404)
 

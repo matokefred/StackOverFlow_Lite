@@ -10,7 +10,7 @@ class Development(object):
     DATABASE_URI = os.getenv('DATABASE_URL')
     JWT_VERIFY_EXPIRATION = True
     JWT_EXPIRATION_DELTA = timedelta(seconds=1200)
-    DB_NAME = 'apidb'
+    DB_NAME = 'apidatabase'
     DB_HOST = 'localhost'
     DB_PASSWORD = ''
     DB_USER = 'postgres'
