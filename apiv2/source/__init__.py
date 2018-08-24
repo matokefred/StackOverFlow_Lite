@@ -1,11 +1,15 @@
 from flask import Flask, make_response, jsonify
 import psycopg2 as psycopg
-from .config import Development
+import os
+from .config import Development, Testing
 from source.end import endpoints
 
 APP = Flask(__name__)
-APP.config.from_object(Development)
 
+if os.environ['CONTEXT'] == 'TEST':
+    APP.config.from_object(Testing)
+elif os.environ['CONTEXT'] == 'DEV':
+    APP.config.from_object(Development)
 
 CONNECT = psycopg.connect(
     dbname=APP.config['DB_NAME'],
@@ -31,7 +35,7 @@ def bad_request(error):
     return make_response(jsonify({'Error-definition': 'Bad Request'}), 400)
 
 
-@APP.errorhandler(405)
+@APP.errorhandler(403)
 def method_not_allowed(error):
     '''Error code 403
     '''

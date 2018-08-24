@@ -36,7 +36,7 @@ def registration():
             password = generate_password_hash(password) # Hashing the password before storage
             cursor.execute(sqlcode, (username, email, password))
             CONNECT.commit()
-            return jsonify({"Success": "User was added successfully"}), 201
+            return jsonify({"Success": "User account added successfully"}), 201
         return jsonify({"Bad request": "The email format that was entered is invalid"})
     abort(400)
 

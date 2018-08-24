@@ -13,11 +13,7 @@ class ConnectDb:
         except psycopg2.DatabaseError:
             return 'Could not connect to the database'
 
-bcrypt = Bcrypt()
-
-
-
-
+    bcrypt = Bcrypt()
 
     def create_table(self):
         create = "CREATE TABLE pet (id serial PRIMARY KEY, name VARCHAR[100], age integer NOT NULL)"
@@ -47,27 +43,3 @@ if __name__ == '__main__':
     database_connection.create_table()
     database_connection.insert_new_record()  # Calling the function in main, only one method called at a time
     # Change the values and call the function numerous times to add new objects
-
-'''con = cur = db = None
-
-
-def connect():
-    global con, cur, db
-    try:
-        con = psycopg2.connect(DATABASE=apidb, user=postgres)
-        cur = con.cursor()
-        db = cur.execute ()
-    except psycopg2.DatabaseError:
-        if con:
-            con.rollback()
-
-
-def get_db():
-    if not (con and cur and db):
-        return con, cur, db
-        # return (con, cur,db)
-    imports
-    con, cur, db = this_file_name.get_db()
-    def fctn:
-        db("Sql code")
-        con.commit()'''
