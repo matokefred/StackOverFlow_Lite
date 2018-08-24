@@ -99,7 +99,7 @@ def answer_question(question_id):
         return abort(404)
 
 
-@PRINTS.route('/apiv1/questions/<int: question_id>', methods=['DELETE'])
+@PRINTS.route('/apiv2/questions/<int:question_id>', methods=['DELETE'])
 @jwt_required()
 def delete_question(question_id):
     cursor = CONNECT.cursor()
@@ -121,7 +121,7 @@ def delete_question(question_id):
         return abort(404)
 
 
-@PRINTS.route('apiv2/upvote/<int: answer_id>', methods=['POST'])
+@PRINTS.route('apiv2/upvote/<int:answer_id>', methods=['POST'])
 @jwt_required()
 def upvote_answer(answer_id):
     cursor = CONNECT.cursor()
@@ -147,7 +147,7 @@ def upvote_answer(answer_id):
         return abort(404)
 
 
-@PRINTS.route('/api/downvote/<int:answer_id>', methods=['POST'])
+@PRINTS.route('/apiv2/downvote/<int:answer_id>', methods=['POST'])
 @jwt_required()
 def downvote_answer(answer_id):
     cursor = CONNECT.cursor()
@@ -173,7 +173,7 @@ def downvote_answer(answer_id):
         return abort(404)
 
 
-@PRINTS.route('apiv1/state/<int:answer_id>', methods=['POST'])
+@PRINTS.route('apiv2/state/<int:answer_id>', methods=['POST'])
 @jwt_required()
 def answer_state(answer_id):
     '''
@@ -204,7 +204,7 @@ def answer_state(answer_id):
         return abort(404)
 
 
-@PRINTS.route('apiv2/update/<int:question_id>/<int:answer_id>', methods=['POST'])
+@PRINTS.route('/apiv2/update/<int:question_id>/<int:answer_id>', methods=['POST'])
 @jwt_required()
 def improve_answer(question_id, answer_id):
     '''
