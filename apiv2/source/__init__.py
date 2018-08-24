@@ -1,14 +1,15 @@
 from flask import Flask, make_response, jsonify
 import psycopg2 as psycopg
 import os
-from .config import Development, Testing
+from .config import Development
 
 APP = Flask(__name__)
 
-if os.environ['CONTEXT'] == 'TEST':
+'''if os.environ['CONTEXT'] == 'TEST':
     APP.config.from_object(Testing)
 elif os.environ['CONTEXT'] == 'DEV':
-    APP.config.from_object(Development)
+    APP.config.from_object(Development)'''
+APP.config.from_object(Development)
 
 CONNECT = psycopg.connect(
     database=APP.config['DB_NAME'],
